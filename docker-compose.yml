@@ -1,0 +1,22 @@
+version: '3'
+
+networks:
+  gateway:
+    external: true
+    name: "gateway"
+
+services:
+  minio:
+    container_name: minio
+    image: bitnami/minio:latest
+    ports:
+       - '9000:9000'
+    restart: unless-stopped
+    networks:
+      - gateway
+    volumes:
+      - "$INSTALL_DIR/data:/data"
+    environment:
+      - MINIO_ROOT_USER=$MINIO_ROOT_USER
+      - MINIO_ROOT_PASSWORD=$MINIO_ROOT_PASSWORD
+      - MINIO_DEFAULT_BUCKETS=$MINIO_DEFAULT_BUCKETS
