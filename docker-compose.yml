@@ -10,7 +10,7 @@ services:
     container_name: minio
     image: bitnami/minio:latest
     ports:
-       - '9000:9000'
+       - '19000:9000'
     restart: unless-stopped
     networks:
       - gateway
